@@ -10,7 +10,7 @@ An interactive chat-style web application that answers questions about the SAP S
 
 | Feature | Detail |
 |---|---|
-| **Topics covered** | 19 O2C knowledge base entries |
+| **Topics covered** | 19 O2C knowledge base entries, sap ,sap-sd ,order-to-cash ,o2c react, vite, tailwindcss, portfolio-project
 | **Search engine** | `fuse.js` fuzzy matching on titles + question variants |
 | **Fallback** | Graceful "did you mean?" suggestions when no good match |
 | **Process map** | Live stage highlighting (Order Created → Credit Check → Delivery Due → Goods Issued → Billing Due → Completed) |
@@ -18,6 +18,7 @@ An interactive chat-style web application that answers questions about the SAP S
 | **Stretch goal** | Optional "Ask anything (Beta)" mode via Anthropic API |
 
 ---
+Website field: sap-sd-process-assistant.vercel.app.
 
 ## Design Language
 
