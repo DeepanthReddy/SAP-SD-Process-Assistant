@@ -20,9 +20,9 @@ export default function App() {
   }, []);
 
   return (
-    <div className="flex h-screen w-full overflow-hidden bg-bg text-text-primary md:flex-row flex-col">
+    <div className="flex md:h-screen min-h-screen w-full md:overflow-hidden bg-bg text-text-primary md:flex-row flex-col">
       {/* ── Left: Chat Panel (responsive) ─────────────────────────── */}
-      <main className="flex flex-col md:w-[65%] w-full min-h-0 border-r border-border md:border-r-0 md:border-b-0 border-b-0">
+      <main className="flex flex-col md:w-[65%] w-full md:h-full h-[70vh] min-h-0 border-b border-border md:border-b-0 md:border-r">
         <ChatPanel
           onStageChange={handleStageChange}
           activeCategory={activeCategory}
@@ -31,7 +31,7 @@ export default function App() {
 
       {/* ── Right: Process Map Panel (responsive) ─────────────────── */}
       <aside
-        className="flex flex-col md:w-[35%] w-full md:min-h-0 min-h-[300px] bg-panel"
+        className="flex flex-col md:w-[35%] w-full md:h-full h-auto min-h-[400px] bg-panel"
       >
         <ProcessMapPanel
           activeStage={activeStage}
