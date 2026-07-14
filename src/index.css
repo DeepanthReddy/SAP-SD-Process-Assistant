@@ -13,12 +13,25 @@ html, body, #root {
   padding: 0;
 }
 
+/* Mobile-friendly viewport height (handles browser address bars) */
+@media (max-width: 768px) {
+  html, body, #root {
+    height: 100dvh;
+  }
+}
+
 body {
   background-color: #0a0c0f;
   color: #eae7e0;
   font-family: 'Inter', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+}
+
+/* Prevent overscroll bounce on mobile */
+body, html {
+  overscroll-behavior: none;
 }
 
 /* ─── Custom Scrollbar ──────────────────────────────────── */
