@@ -48,7 +48,7 @@ export default function App() {
 
       {/* ── Left: Chat Panel (responsive) ─────────────────────────── */}
       <main 
-        className={`${mobileTab === 'chat' ? 'flex' : 'hidden'} md:flex flex-col md:w-[65%] w-full h-full min-h-0 md:border-r border-border`}
+        className={`${mobileTab === 'chat' ? 'flex' : 'hidden'} md:flex flex-col md:w-[65%] w-full flex-1 min-h-0 md:border-r border-border`}
       >
         <ChatPanel
           onStageChange={handleStageChange}
@@ -58,7 +58,7 @@ export default function App() {
 
       {/* ── Right: Process Map Panel (responsive) ─────────────────── */}
       <aside
-        className={`${mobileTab === 'map' ? 'flex' : 'hidden'} md:flex flex-col md:w-[35%] w-full h-full min-h-0 bg-panel`}
+        className={`${mobileTab === 'map' ? 'flex' : 'hidden'} md:flex flex-col md:w-[35%] w-full flex-1 min-h-0 bg-panel`}
       >
         <ProcessMapPanel
           activeStage={activeStage}
