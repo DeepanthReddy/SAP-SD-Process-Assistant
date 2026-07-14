@@ -30,12 +30,17 @@ export default function ChatPanel({ onStageChange, activeCategory }) {
   const [input, setInput]       = useState('');
   const [isTyping, setIsTyping] = useState(false);
 
-  const bottomRef = useRef(null);
+  const threadRef = useRef(null);
   const inputRef  = useRef(null);
 
-  // Auto-scroll to latest message
+  // Auto-scroll to latest message securely (prevents mobile page shift)
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (threadRef.current) {
+      threadRef.current.scrollTo({
+        top: threadRef.current.scrollHeight,
+        behavior: 'smooth'
+      });
+    }
   }, [messages, isTyping]);
 
   const handleQuery = useCallback(async (query) => {
@@ -93,7 +98,7 @@ export default function ChatPanel({ onStageChange, activeCategory }) {
       </div>
 
       {/* ── Message thread ─────────────────────────────────── */}
-      <div className="flex-1 overflow-y-auto px-5 py-5 space-y-1">
+      <div ref={threadRef} className="flex-1 overflow-y-auto px-5 py-5 space-y-1">
         {messages.map(msg => {
           if (msg.type === 'welcome') {
             return (
@@ -123,7 +128,6 @@ export default function ChatPanel({ onStageChange, activeCategory }) {
         })}
 
         {isTyping && <TypingIndicator />}
-        <div ref={bottomRef} />
       </div>
 
       {/* ── Suggestion chips ───────────────────────────────── */}
