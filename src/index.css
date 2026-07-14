@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,400&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #0a0c0f;
+  color: #eae7e0;
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Custom Scrollbar ──────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #0a0c0f; }
+::-webkit-scrollbar-thumb { background: #262b31; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #3a4048; }
+
+/* ─── Typing indicator dots ─────────────────────────────── */
+.typing-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #8b9299;
+  display: inline-block;
+  animation: pulseDot 1.2s ease-in-out infinite;
+}
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes pulseDot {
+  0%, 80%, 100% { opacity: 0.2; transform: scale(0.8); }
+  40% { opacity: 1; transform: scale(1); }
+}
+
+/* ─── Stage glow ────────────────────────────────────────── */
+.stage-active {
+  border-color: #e7a13c !important;
+  box-shadow: 0 0 0 1px #e7a13c40, 0 0 16px 2px #e7a13c30;
+  transition: border-color 0.3s ease, box-shadow 0.4s ease;
+}
+
+/* ─── Message fade in ───────────────────────────────────── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.msg-animate { animation: fadeInUp 0.3s ease-out forwards; }
+
+/* ─── Chip hover ────────────────────────────────────────── */
+.chip-btn {
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+.chip-btn:hover {
+  background: #1a1e23;
+  border-color: #4fa89a;
+  color: #eae7e0;
+}
+
+/* ─── Input focus ring ──────────────────────────────────── */
+.chat-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #e7a13c50;
+  border-color: #e7a13c;
+}
