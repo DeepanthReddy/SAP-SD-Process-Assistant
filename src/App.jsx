@@ -1,10 +1,12 @@
 import { useState, useCallback } from 'react';
+import { MessageSquare, Map } from 'lucide-react';
 import ChatPanel from './components/ChatPanel';
 import ProcessMapPanel from './components/ProcessMapPanel';
 
 export default function App() {
   const [activeStage, setActiveStage]       = useState(null);
   const [activeCategory, setActiveCategory] = useState('All');
+  const [mobileTab, setMobileTab]           = useState('chat'); // 'chat' or 'map'
 
   const handleStageChange = useCallback((stage) => {
     setActiveStage(stage);
@@ -20,9 +22,34 @@ export default function App() {
   }, []);
 
   return (
-    <div className="flex md:h-screen min-h-screen w-full md:overflow-hidden bg-bg text-text-primary md:flex-row flex-col">
+    <div className="flex h-screen w-full overflow-hidden bg-bg text-text-primary flex-col md:flex-row">
+      
+      {/* Mobile Tab Navigation (Only visible on small screens) */}
+      <div className="md:hidden flex border-b border-border bg-panel flex-shrink-0">
+        <button
+          onClick={() => setMobileTab('chat')}
+          className={`flex-1 flex items-center justify-center gap-2 py-3 text-sm font-medium transition-colors ${
+            mobileTab === 'chat' ? 'text-amber border-b-2 border-amber bg-panel-light' : 'text-text-dim'
+          }`}
+        >
+          <MessageSquare size={16} />
+          Chat
+        </button>
+        <button
+          onClick={() => setMobileTab('map')}
+          className={`flex-1 flex items-center justify-center gap-2 py-3 text-sm font-medium transition-colors ${
+            mobileTab === 'map' ? 'text-amber border-b-2 border-amber bg-panel-light' : 'text-text-dim'
+          }`}
+        >
+          <Map size={16} />
+          Process Map
+        </button>
+      </div>
+
       {/* ── Left: Chat Panel (responsive) ─────────────────────────── */}
-      <main className="flex flex-col md:w-[65%] w-full md:h-full h-[70vh] min-h-0 border-b border-border md:border-b-0 md:border-r">
+      <main 
+        className={`${mobileTab === 'chat' ? 'flex' : 'hidden'} md:flex flex-col md:w-[65%] w-full h-full min-h-0 md:border-r border-border`}
+      >
         <ChatPanel
           onStageChange={handleStageChange}
           activeCategory={activeCategory}
@@ -31,7 +58,7 @@ export default function App() {
 
       {/* ── Right: Process Map Panel (responsive) ─────────────────── */}
       <aside
-        className="flex flex-col md:w-[35%] w-full md:h-full h-auto min-h-[400px] bg-panel"
+        className={`${mobileTab === 'map' ? 'flex' : 'hidden'} md:flex flex-col md:w-[35%] w-full h-full min-h-0 bg-panel`}
       >
         <ProcessMapPanel
           activeStage={activeStage}
